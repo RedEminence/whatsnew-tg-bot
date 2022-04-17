@@ -2,12 +2,8 @@ from collections import defaultdict
 
 import praw
 
+from db.repositories import SubredditRepository
 from settings import REDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET
-
-subreddits = [
-    'eldenring',
-    'persona'
-]
 
 
 class API():
@@ -19,6 +15,8 @@ class API():
         )
 
     def collect_hot_submissions_by_subreddit(self, limit: int = 10) -> dict:
+        subreddits = SubredditRepository().list_of_names()
+
         submissions_by_subreddits = {subreddit: [] for subreddit in subreddits}
 
         for subreddit in subreddits:

@@ -1,7 +1,7 @@
 from telethon.tl.custom import Message
 
 from settings import TELEGRAM_BOT_TOKEN
-from telegram.bot_initializer import BotInitializer
+from services.telegram.bot_initializer import BotInitializer
 
 
 class DigestSender(BotInitializer):

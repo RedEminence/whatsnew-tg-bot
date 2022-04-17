@@ -8,11 +8,11 @@ from starlette.responses import PlainTextResponse
 from starlette.status import HTTP_204_NO_CONTENT
 
 from database import Base, engine, SessionLocal
-from reddit.api import API
+from db.repositories import SubredditRepository
+from services.reddit.api import API
 from schemas.subreddit import SubredditCreate, Subreddit
-from services import SubredditRepository
-from telegram.command_handler import CommandHandler
-from telegram.digest_sender import DigestSender
+from services.telegram.command_handler import CommandHandler
+from services.telegram.digest_sender import DigestSender
 
 app = FastAPI()
 

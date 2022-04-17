@@ -15,6 +15,9 @@ class SubredditRepository():
     def list(self) -> List[Subreddit]:
         return self.db.query(self.model).all()
 
+    def list_of_names(self) -> List[str]:
+        return list(self.db.query(self.model).values('name'))
+
     def create(self, schema: SubredditCreate) -> Subreddit:
         subreddit = Subreddit(**schema.dict())
         self.db.add(subreddit)
