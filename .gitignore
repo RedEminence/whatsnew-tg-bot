@@ -6,3 +6,4 @@ app/CommandHandler.session
 app/CommandHandler.session-journal
 app/DigestSender.session
 app/DigestSender.session-journal
+app/celerybeat-schedule

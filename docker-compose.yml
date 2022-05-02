@@ -58,15 +58,13 @@ services:
       timeout: 3s
       retries: 30
 
-  celery-default:
-    container_name: celery-default-whatsnew-tg-bot
+  celery:
+    container_name: celery-whatsnew-tg-bot
     build:
       context: ./app
-    command: celery --app=config worker --loglevel=debug --queues=default --concurrency=1 --hostname=default
+    command: celery -A config.celery worker -B --loglevel=debug
     volumes:
       - ./app/:/usr/src/app/
-    env_file:
-      - ./app/.env
     depends_on:
       - web
     networks:

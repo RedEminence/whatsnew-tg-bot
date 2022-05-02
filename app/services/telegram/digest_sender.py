@@ -1,20 +1,15 @@
-from telethon.tl.custom import Message
-
 from config.settings import TELEGRAM_BOT_TOKEN
-from services.telegram.bot_initializer import BotInitializer
+from services.telegram.bot import Bot
 
 
-class DigestSender(BotInitializer):
+class DigestSender(Bot):
     def run(self):
         with self.client.start(bot_token=TELEGRAM_BOT_TOKEN):
-            self.client.loop.run_until_complete(self._send_message())
+            self.client.loop.run_until_complete(self._send_digest())
 
-    async def _send_message(self):
-        # Getting information about yourself
-        me = await self.client.get_me()
+    async def _send_digest(self):
+        submissions = self.reddit_api.collect_hot_submissions_by_subreddit()
 
-        # You can send messages to yourself...
-        message: Message = await self.client.send_message(self.telegram_username, 'Hello, myself!')
-
-        # Sending a message returns the sent message object, which you can use
-        print(message.raw_text)
+        if submissions:
+            markdown = self._format_as_markdown(submissions)
+            await self.client.send_message(self.telegram_username, markdown)
