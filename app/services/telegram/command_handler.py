@@ -1,7 +1,7 @@
 from telethon.events import NewMessage
 
 from services.reddit.api import API
-from settings import TELEGRAM_BOT_TOKEN
+from config.settings import TELEGRAM_BOT_TOKEN
 from services.telegram.bot_initializer import BotInitializer
 
 

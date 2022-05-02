@@ -1,3 +1,4 @@
+from itertools import chain
 from typing import List
 
 from sqlalchemy.orm import Session
@@ -16,7 +17,7 @@ class SubredditRepository():
         return self.db.query(self.model).all()
 
     def list_of_names(self) -> List[str]:
-        return list(self.db.query(self.model).values('name'))
+        return list(chain.from_iterable(self.db.query(self.model).with_entities(self.model.name).all()))
 
     def create(self, schema: SubredditCreate) -> Subreddit:
         subreddit = Subreddit(**schema.dict())

@@ -1,6 +1,7 @@
 .idea
 venv
-.env
+.env.db
+app/.env
 app/CommandHandler.session
 app/CommandHandler.session-journal
 app/DigestSender.session

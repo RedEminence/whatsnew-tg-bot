@@ -3,7 +3,8 @@ from collections import defaultdict
 import praw
 
 from db.repositories import SubredditRepository
-from settings import REDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET
+from db.utils import get_db
+from config.settings import REDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET
 
 
 class API():
@@ -15,8 +16,8 @@ class API():
         )
 
     def collect_hot_submissions_by_subreddit(self, limit: int = 10) -> dict:
-        subreddits = SubredditRepository().list_of_names()
-
+        session = next(get_db())
+        subreddits = SubredditRepository(session).list_of_names()
         submissions_by_subreddits = {subreddit: [] for subreddit in subreddits}
 
         for subreddit in subreddits:

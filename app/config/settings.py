@@ -16,3 +16,6 @@ DB_USER = os.getenv("DB_USER")
 DB_PASSWORD = os.getenv("DB_PASSWORD")
 DB_PORT = os.getenv("DB_PORT")
 DB_NAME = os.getenv("DB_NAME")
+
+CELERY_BROKER_URL = os.environ.get('REDIS_HOST', 'redis://redis:6379/0')
+CELERY_RESULT_BACKEND = os.environ.get('REDIS_HOST', 'redis://redis:6379/0')

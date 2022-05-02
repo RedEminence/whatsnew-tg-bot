@@ -3,7 +3,7 @@ import time
 from telethon import TelegramClient
 from telethon.sessions import SQLiteSession
 
-from settings import TELEGRAM_API_ID, TELEGRAM_API_HASH, TELEGRAM_USERNAME
+from config.settings import TELEGRAM_API_ID, TELEGRAM_API_HASH, TELEGRAM_USERNAME
 
 
 class BotInitializer():
